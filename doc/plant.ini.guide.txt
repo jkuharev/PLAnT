@@ -1,0 +1,37 @@
+# What algorithm to use for retention time alignment
+# if TRUE then the LinRTW implementation of Hirschberg algorithm
+# otherwise the FastLinRTW implementation
+alignment.forceFullAlignment=false
+
+# maximum distances between properties of two "matching" peaks
+
+# ion mobility or drift time distance in bin units
+alignment.match.maxDeltaDriftTimeBIN=200.0
+# mass distance in ppm
+alignment.match.maxDeltaMassPPM=10
+
+# LinDRTW is only used if one of the aligned runs contains more peaks than this threshold value
+alignment.minPeaksForIterativeAlignment=5000
+
+# There are potentially many equivalent alignments.
+# We consider the outermost "LEFT" or "RIGHT" warping paths in the imaginary dynamic programming matrix.
+# Alternatively "BOTH" of these extreme paths are calculated.
+# "LEFT" maps earliest possible reference times to source peaks
+# "RIGHT" maps latest possible reference times to source peaks 
+alignment.pathMode=BOTH
+
+# Number of peaks around the warping path projection used at the next stage of prealignment.
+# If this number is between 0 and 0.5 then the radius is calculated automatically 
+# as portion of the total number of peaks in the current alignment.
+alignment.pathRefinementRadius=300.0
+
+# Maximum recursion depth to fork the process of subalignment into new thread.
+# The recursive subalignments at higher depth than this value are calculated in the thread of their parent.
+# Thumbrule: double the number of your cpu cores, it doesn't really hurt
+# alignment.processForkingDepth < 2 switches off the parallelization completely
+alignment.processForkingDepth=8
+
+# CSV column separation, decimal point and text quotation charakters to use in the output files
+csv.colSep=';'
+csv.decPoint=','
+csv.quoteChar='"'
